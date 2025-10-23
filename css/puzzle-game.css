@@ -1,0 +1,306 @@
+#puzzle-game-screen {
+    background-color: var(--bg-color);
+    justify-content: flex-start;
+    padding-top: 60px;
+    padding-bottom: 30px;
+    overflow-y: auto;
+}
+
+#puzzle-game-screen h2 {
+    color: var(--secondary-color);
+    font-size: 38px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+}
+
+/* Área del rompecabezas */
+.puzzle-area {
+    width: 100%;
+    max-width: 360px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* ============================================
+   TABLERO PRINCIPAL (donde se colocan las piezas)
+   ============================================ */
+#puzzle-board {
+    width: 330px;
+    height: 330px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    box-sizing: border-box;
+    
+    /* Grid para 3x3 */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+}
+
+/* Slots del tablero (espacios donde van las piezas) */
+.puzzle-slot {
+    background-color: rgba(255, 255, 255, 0.6);
+    border: 2px dashed var(--secondary-color);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    height: 100%;
+    min-width: 95px;
+    min-height: 95px;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+}
+
+.puzzle-slot:hover {
+    background-color: rgba(160, 126, 210, 0.3);
+    border-color: var(--primary-color);
+    border-style: solid;
+    transform: scale(1.02);
+}
+
+/* ============================================
+   CONTENEDOR DE PIEZAS (piezas disponibles)
+   ============================================ */
+#puzzle-pieces-container {
+    width: 100%;
+    max-width: 360px;
+    min-height: 180px;
+    background-color: rgba(87, 58, 122, 0.1);
+    border: 2px solid var(--secondary-color);
+    border-radius: 15px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    justify-items: center;
+    align-items: center;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+/* ============================================
+   PIEZAS INDIVIDUALES
+   ============================================ */
+.puzzle-piece {
+    background-repeat: no-repeat;
+    cursor: grab;
+    transition: all 0.2s ease;
+    position: relative;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    
+    /* Tamaño específico para 3x3 */
+    width: 100px;
+    height: 100px;
+}
+
+.puzzle-piece:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+.puzzle-piece:active {
+    cursor: grabbing;
+    transform: scale(1.05);
+}
+
+/* Pieza ya colocada en el tablero */
+.puzzle-piece.placed {
+    cursor: default;
+    box-shadow: none;
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.puzzle-piece.placed:hover {
+    transform: scale(1);
+}
+
+/* ============================================
+   ANIMACIONES Y FEEDBACK
+   ============================================ */
+
+/* Animación de shake para feedback negativo */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* Animación de éxito */
+@keyframes success-pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Efecto de brillo al completar */
+@keyframes glow {
+    0%, 100% { box-shadow: 0 0 5px rgba(76, 175, 80, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(76, 175, 80, 0.8); }
+}
+
+/* ============================================
+   ESTADOS ESPECIALES
+   ============================================ */
+
+/* Slot cuando recibe una pieza correcta */
+.puzzle-slot.correct {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.1);
+    animation: success-pulse 0.5s ease;
+}
+
+/* Slot cuando recibe una pieza incorrecta */
+.puzzle-slot.incorrect {
+    border-color: #f44336;
+    background-color: rgba(244, 67, 54, 0.1);
+    animation: shake 0.5s;
+}
+
+/* Tablero completo (todas las piezas colocadas) */
+#puzzle-board.completed {
+    animation: glow 2s infinite;
+    border: 3px solid #4CAF50;
+}
+
+/* ============================================
+   RESPONSIVE PARA PANTALLAS MÁS PEQUEÑAS
+   ============================================ */
+
+/* Ajustes para el contenedor de la app (440px) */
+@media (max-width: 440px) {
+    #puzzle-board {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .puzzle-slot {
+        min-width: 90px;
+        min-height: 90px;
+    }
+    
+    .puzzle-piece {
+        width: 90px;
+        height: 90px;
+    }
+    
+    #puzzle-pieces-container {
+        max-width: 320px;
+        gap: 10px;
+    }
+}
+
+/* ============================================
+   ELEMENTOS DE TEXTO Y BOTONES
+   ============================================ */
+
+/* Botón de terminar */
+#puzzle-game-screen .btn {
+    margin-top: 20px;
+    margin-bottom: 40px;
+    flex-shrink: 0;
+}
+
+/* Texto explicativo */
+#puzzle-game-screen .game-explanation-text {
+    font-size: 13px;
+    line-height: 1.4;
+    padding: 0 20px;
+    margin-top: 10px;
+}
+
+/* ============================================
+   INDICADORES VISUALES
+   ============================================ */
+
+/* Contador de piezas restantes (opcional) */
+.puzzle-counter {
+    text-align: center;
+    color: var(--secondary-color);
+    font-size: 16px;
+    font-weight: 600;
+    margin: 10px 0;
+}
+
+/* Efecto de arrastre */
+.puzzle-piece.dragging {
+    opacity: 0.5;
+    cursor: grabbing;
+}
+
+/* Borde punteado animado para slots vacíos */
+@keyframes dash {
+    to {
+        stroke-dashoffset: -20;
+    }
+}
+
+.puzzle-slot:empty {
+    background-image: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        rgba(74, 15, 109, 0.1) 10px,
+        rgba(74, 15, 109, 0.1) 20px
+    );
+}
+
+/* ============================================
+   MEJORAS DE USABILIDAD
+   ============================================ */
+
+/* Prevenir selección de texto al arrastrar */
+.puzzle-area {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+/* Cursor específico para áreas de drop */
+.puzzle-slot.drag-over {
+    border-color: var(--accent-color);
+    border-style: solid;
+    background-color: rgba(230, 241, 168, 0.2);
+}
+
+/* Transición suave para todas las piezas */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* ============================================
+   NOTAS PARA EL DESARROLLADOR
+   ============================================
+   
+   TAMAÑOS CALCULADOS PARA 3x3:
+   - Tablero: 330x330px
+   - Cada slot: ~95x95px (con gaps)
+   - Piezas sueltas: 100x100px
+   - Gap entre slots: 8px
+   
+   PARA CAMBIAR A 2x2:
+   - Tablero: 240x240px
+   - Slots: ~110x110px
+   - Piezas: 120x120px
+   
+   PARA CAMBIAR A 4x4:
+   - Tablero: 340x340px
+   - Slots: ~75x75px
+   - Piezas: 80x80px
+   
+   ============================================ */

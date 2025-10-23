@@ -1,0 +1,70 @@
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(3px); /* Efecto de desenfoque en el fondo */
+}
+
+.modal-overlay.active {
+    display: flex;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Contenido del modal */
+.modal-content {
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    width: 80%;
+    max-width: 350px;
+    color: var(--secondary-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-content img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.modal-content h3 {
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+}
+
+.modal-content p {
+    margin: 0 0 30px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

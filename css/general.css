@@ -1,0 +1,125 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #838383;
+    font-family: var(--font-family);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal de la aplicación */
+#app-container {
+    width: var(--app-width);
+    height: var(--app-height);
+    background-color: var(--bg-color);
+
+    box-shadow: var(--shadow-large);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sistema de pantallas */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 40px;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* Botón de volver (usado en todas las pantallas) */
+.back-btn {
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: var(--shadow-medium);
+    transition: transform var(--transition-fast);
+    padding: 0;
+    z-index: 10;
+}
+
+.back-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.back-btn:hover {
+    transform: scale(1.1);
+}
+
+/* Botones principales */
+.btn {
+    background-color: var(--accent-color);
+    color: var(--dark-purple);
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 22px;
+    padding: 18px 40px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-small);
+    transition: all var(--transition-fast);
+    z-index: 2;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-medium);
+}
+
+.btn:active {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: var(--white);
+    color: var(--secondary-color);
+}
+
+/* Subtítulos generales */
+.subtitle {
+    color: var(--secondary-color);
+    font-size: 16px;
+    max-width: 300px;
+    margin-bottom: 30px;
+    line-height: 1.5;
+}
+
+/* Texto explicativo de juegos */
+.game-explanation-text {
+    color: var(--secondary-color);
+    font-size: 14px;
+    line-height: 1.5;
+    width: 100%;
+    max-width: 340px;
+    margin-top: auto;
+    padding-top: 20px;
+    text-align: center;
+}

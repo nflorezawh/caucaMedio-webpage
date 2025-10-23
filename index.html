@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Tesoros del Cauca Medio</title>
+
+    <!-- Módulos -->
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/general.css" />
+    <link rel="stylesheet" href="css/welcome.css" />
+    <link rel="stylesheet" href="css/menu.css" />
+    <link rel="stylesheet" href="css/memory-game.css" />
+    <link rel="stylesheet" href="css/puzzle-game.css" />
+    <link rel="stylesheet" href="css/modal.css" />
+    <link rel="stylesheet" href="css/progress-screen.css" />
+  </head>
+  <body>
+    <div id="app-container">
+      <!-- | PANTALLA DE INICIO | -->
+      <div id="welcome-screen" class="screen active">
+        <!-- No sé que esté haciendo (revisar)
+        <div class="leaf leaf-top-left"></div>
+        <div class="leaf leaf-top-right"></div>
+        --------------------------------------- -->
+        <h1>TESOROS DEL CAUCA MEDIO</h1>
+
+        <div class="welcome-box">
+          <p>
+            ¡Hola, joven explorador! <br />
+            Bienvenido a los Tesoros del Cauca, una tierra de historias y
+            saberes ancestrales donde antiguas comunidades dejaron un legado de
+            armonía con la naturaleza.
+          </p>
+        </div>
+
+        <button class="welcome-btn btn" onclick="showScreen('menu-screen')">
+          ¡Empieza la aventura!
+        </button>
+
+        <!-- No sé que esté haciendo (revisar)
+        <div class="leaf leaf-bottom-left"></div>
+        <div class="leaf leaf-bottom-right"></div>
+        --------------------------------------- -->
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PANTALLA DE MENÚ DE MINIJUEGOS -->
+      <!-- ============================================ -->
+      <div id="menu-screen" class="screen">
+        <button
+          class="back-btn"
+          onclick="showScreen('welcome-screen')"
+          aria-label="Volver"
+        >
+          <img
+            src="https://api.iconify.design/material-symbols/arrow-back-ios-new-rounded.svg?color=white"
+            alt="Volver"
+          />
+        </button>
+
+        <h2>Minijuegos</h2>
+        <p class="subtitle">
+          Elige un oficio y completa el minijuego para obtener recompensas.
+        </p>
+
+        <div class="menu-options">
+          <!-- Tarjeta de Agricultura -->
+          <div class="game-card">
+            <div class="game-icon agriculture">
+              <img src="src/images/AGRICULTURA.png" alt="Agricultura" />
+            </div>
+            <div class="game-info">
+              <h3>Agricultura</h3>
+              <p>Juego de memoria</p>
+            </div>
+            <button class="btn-play" onclick="showScreen('memory-game-screen')">
+              Jugar
+            </button>
+          </div>
+
+          <!-- Tarjeta de Alfarería -->
+          <div class="game-card">
+            <div class="game-icon pottery">
+              <img src="src/images/ALFARERIA.png" alt="Alfarería" />
+            </div>
+            <div class="game-info">
+              <h3>Alfarería</h3>
+              <p>Rompecabezas</p>
+            </div>
+            <button class="btn-play" onclick="showScreen('puzzle-game-screen')">
+              Jugar
+            </button>
+          </div>
+
+          <!-- Tarjeta de Materiales -->
+          <div class="game-card">
+            <div class="game-icon materials">
+              <img src="src/images/ARTEFACTOS.png" alt="Artefactos" />
+            </div>
+            <div class="game-info">
+              <h3>Materiales</h3>
+              <p>Sopa de letras</p>
+            </div>
+            <button class="btn-play" onclick="showScreen('wordSearch-screen')">
+              Jugar
+            </button>
+          </div>
+        </div>
+
+        <button
+          class="btn btn-secondary"
+          onclick="showScreen('progress-screen')"
+        >
+          Ver mi progreso
+        </button>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PANTALLA DE JUEGO DE MEMORIA -->
+      <!-- ============================================ -->
+      <div id="memory-game-screen" class="screen">
+        <button
+          class="back-btn"
+          onclick="showScreen('menu-screen')"
+          aria-label="Volver"
+        >
+          <img
+            src="https://api.iconify.design/material-symbols/arrow-back-ios-new-rounded.svg?color=white"
+            alt="Volver"
+          />
+        </button>
+
+        <h2>Juego de Memoria</h2>
+        <p class="subtitle">Encuentra todos los pares de cartas</p>
+
+        <div class="memory-grid">
+          <!-- Las cartas se generan dinámicamente con JavaScript -->
+        </div>
+
+        <p class="game-explanation-text">
+          Las comunidades del Cauca Medio cultivaban maíz, yuca y otros
+          alimentos usando técnicas ancestrales que aún se preservan.
+        </p>
+
+        <button class="btn" onclick="checkMemoryGame()">Terminar</button>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PANTALLA DE JUEGO DE ROMPECABEZAS -->
+      <!-- ============================================ -->
+      <div id="puzzle-game-screen" class="screen">
+        <button
+          class="back-btn"
+          onclick="showScreen('menu-screen')"
+          aria-label="Volver"
+        >
+          <img
+            src="https://api.iconify.design/material-symbols/arrow-back-ios-new-rounded.svg?color=white"
+            alt="Volver"
+          />
+        </button>
+
+        <h2>Rompecabezas</h2>
+        <p class="subtitle">
+          Busca la pieza correspondiente siguiendo las formas que conectan para
+          ver la pieza final.
+        </p>
+
+        <div class="puzzle-area">
+          <div id="puzzle-board"></div>
+          <div id="puzzle-pieces-container"></div>
+        </div>
+
+        <p class="game-explanation-text">
+          Las comunidades del Cauca Medio en la época prehispánica hacían
+          figuras cerámicas con usos decorativos, rituales, funerarios y
+          utilitarios.
+        </p>
+
+        <button class="btn" onclick="checkPuzzle()">Terminar</button>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PANTALLA DE PROGRESO -->
+      <!-- ============================================ -->
+      <div id="progress-screen" class="screen">
+        <button
+          class="back-btn"
+          onclick="showScreen('menu-screen')"
+          aria-label="Volver"
+        >
+          <img
+            src="https://api.iconify.design/material-symbols/arrow-back-ios-new-rounded.svg?color=white"
+            alt="Volver"
+          />
+        </button>
+
+        <h2>Mi Progreso</h2>
+        <p class="subtitle">Aquí verás tus logros y recompensas</p>
+
+        <div class="progress-content">
+          <p>Próximamente...</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- PANTALLA DE PROGRESO -->
+      <!-- ============================================ -->
+      <div id="wordSearch-screen" class="screen">
+        <button
+          class="back-btn"
+          onclick="showScreen('menu-screen')"
+          aria-label="Volver"
+        >
+          <img
+            src="https://api.iconify.design/material-symbols/arrow-back-ios-new-rounded.svg?color=white"
+            alt="Volver"
+          />
+        </button>
+
+        <h2>Sopa de Letras</h2>
+        <p class="subtitle">¡Estamos trabajando en ello</p>
+
+        <div class="progress-content">
+          <p>Próximamente...</p>
+        </div>
+      </div>
+
+      <!-- ============================================ -->
+      <!-- MODAL DE FEEDBACK -->
+      <!-- ============================================ -->
+      <div id="feedback-modal" class="modal-overlay">
+        <div class="modal-content">
+          <img id="modal-icon" src="" alt="Icono de resultado" />
+          <h3 id="modal-title"></h3>
+          <p id="modal-text"></p>
+          <button id="modal-button" class="btn"></button>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/memory-game.js"></script>
+    <script src="js/puzzle-game.js"></script>
+    <script src="js/modal.js"></script>
+  </body>
+</html>

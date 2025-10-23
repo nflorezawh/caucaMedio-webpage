@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+:root {
+    /* Colores principales */
+    --bg-color: #e1d4f7;           /* Morado muy claro para el fondo */
+    --primary-color: #A07ED2;       /* Morado principal */
+    --secondary-color: #4a0f6d;     /* Morado oscuro */
+    --accent-color: #e6f1a8;        /* Verde claro para botones */
+    --white: #ffffff;
+    --light-purple: #C9B4DB;        /* Morado claro para íconos */
+    --dark-purple: #573A7A;         /* Morado para cajas de texto */
+    
+    /* Fuentes */
+    --font-family: 'League Spartan', sans-serif;
+    
+    /* Sombras */
+    --shadow-small: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 6px 12px rgba(0, 0, 0, 0.2);
+    --shadow-large: 0 10px 20px rgba(0, 0, 0, 0.2);
+    
+    /* Transiciones */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.4s ease;
+    
+    /* Tamaños del contenedor */
+    --app-width: 440px;
+    --app-height: 956px;
+    --border-radius: 20px;
+}
